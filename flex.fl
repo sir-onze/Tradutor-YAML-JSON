@@ -1,0 +1,29 @@
+%{
+#include <stdio.h>
+
+int indent_level=0;
+int indent_now=0;
+%}
+
+%option noyywrap
+%option yylineno
+
+COMMENT         [#][A-Za-z0-9 ]*
+ATOM            [A-Za-z0-9][A-Za-z0-9 ]+[A-Za-z0-9]
+NEWLINE         [\n]
+COLON           [:]
+TAB             [ ][ ]
+HY              [-]
+
+%%
+
+[-][-][-]       {;}
+[  ]            {;}
+{COMMENT}       {yylval.s = strdup(yytext); return COMMENT;}
+{ATOM}          {yylval.s = strdup(yytext); return ATOM;}
+
+{NEWLINE}       {yylval.s = strdup(yytext); return NEWLINE;}
+{COLON}         {yylval.s = strdup(yytext); return COLON;}
+{HY}            {yylval.s = strdup(yytext); return HY;}
+
+%%

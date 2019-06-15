@@ -1,2 +1,2 @@
 # Tradutor-YAML-JSON
-Trabalho Prático de PL 
+Trabalho Prático de Processamento de Linguagens 
